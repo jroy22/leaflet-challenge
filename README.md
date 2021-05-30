@@ -9,5 +9,6 @@ The USGS gathers a large amount of data daily and worldwide without a meaningful
 
 Using the data from USGS and the leaflet library on JavaScript, a world map is displayed to show weekly Earthquakes around the world. 
 
-- Each earthquake has a circle marker with a size based on the magnitude of the earthquake. - The marker also has is represented with a color between Red to Green to determine the depth of the earthquake. 
+- Each earthquake has a circle marker with a size based on the magnitude of the earthquake. 
+- The marker also has is represented with a color between Red to Green to determine the depth of the earthquake. 
 - Lastly, the each marker provides information on the earthquake that occured: the exact magnitude, depth, and location. 

@@ -1,6 +1,7 @@
 // Check to see if the file is being read
 console.log("Logic File Loaded");
 
+// Creates layer for earthquake data
 var earthquakes = new L.LayerGroup();
 
 // Create overlay object to hold our overlay layer
@@ -32,9 +33,11 @@ var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_we
 // Perform a GET request to the query URL
 d3.json(queryUrl).then(function(earthquakedata) {
     console.log(earthquakedata);
+    
+    // List of colors from a Red to Green Gradient
     var mColors = ["#ff5f65", "#fca35d", "#fbd72a", "#f7db11", "#dcf400", "#a3f600"]
 
-    // Function to determine the marker color
+    // Function to determine the marker color based on the depth of the earthquake
     function markerColors(depth) {
         var colorFill = "white";
         switch(true){
@@ -65,6 +68,7 @@ d3.json(queryUrl).then(function(earthquakedata) {
         return colorFill;
     }
 
+    // Function to style the markers with the colors determined in the markerColors function
     function markerStyle(features){
         return {
             opacity: 1, 

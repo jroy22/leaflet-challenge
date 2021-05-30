@@ -77,19 +77,56 @@ d3.json(queryUrl).then(function(earthquakedata) {
         };
     }
 
+    // Getting the markers onto the map
     L.geoJSON(earthquakedata, {
-        pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng);
-        },
+        
+        // Creates Circle Markers
+        pointToLayer: function(_, latlng) {
+            return L.circleMarker(latlng);
+         },
 
+        // Styles the markers with the functions above
         style: markerStyle,
 
+        // Gives each feature a popup describing the magnitude, depth, and place of the earthquake
         onEachFeature: function(feature, layer) {
         layer.bindPopup("<h3>Magnitude: " + feature.properties.mag +
         "</h3><h3>Depth: " + feature.geometry.coordinates[2] + "</h3><hr><p>" + feature.properties.place + "<p>");
         }
 
+    // Adding markers onto earthquakes layer
     }).addTo(earthquakes);
+
+    // Adding earthquakes layer to map
     earthquakes.addTo(myMap);
+
+    // Grouping the depths for legend
+    var limits = ["-10-10", "10-30", "30-50", "50-70", "70-90", "90+"];
+
+    // Creating a Legend for defining the Colors
+    // Code help from https://gis.stackexchange.com/questions/133630/adding-leaflet-legend
+    var legend = L.control({ position: "bottomright" });
+    legend.onAdd = function() {
+        var div = L.DomUtil.create("div", "info legend");
+        var labels = [];
+
+        var legendInfo = "<u1 class=\"labels\">";
+        var legendEnd = "</u1>";
+
+        for (i=0; i < limits.length; i++) {
+            labels.push(
+            "<li style=\"background-color: " + mColors[i] + "\"></li" + "div class=\labels\">" + limits[i] + "</div>"
+            );
+        }
+        legendInfo = legendInfo + legendEnd;
+
+        div.innerHTML = legendInfo;
+
+        div.innerHTML += "<u1>" + labels.join("") + "</u1>";
+        return div;
+    };
+
+    // Adding legend to map
+    legend.addTo(myMap);
 
 });

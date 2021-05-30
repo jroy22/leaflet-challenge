@@ -105,7 +105,7 @@ d3.json(queryUrl).then(function(earthquakedata) {
     earthquakes.addTo(myMap);
 
     // Grouping the depths for legend
-    var limits = ["-10-10", "10-30", "30-50", "50-70", "70-90", "90+"];
+    var limits = ["90+", "90-70", "70-50", "50-30", "30-10", "10--10"];
 
     // Creating a Legend for defining the Colors
     // Code help from https://gis.stackexchange.com/questions/133630/adding-leaflet-legend

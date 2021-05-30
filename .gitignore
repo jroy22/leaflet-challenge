@@ -1,3 +1,6 @@
+# Mapbox API Key
+config.py
+
 # macOS related files
 .DS_Store
 
